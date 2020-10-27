@@ -1,0 +1,22 @@
+<%- include("header.ejs") %>
+<div class="box" id="heading">
+  <h1><%= theDay %></h1>
+</div>
+
+<div class="box">
+  <% activities.forEach(function(activitie){ %>
+    <form class="item" action="/delete" method="post">
+      <div class="item">
+        <input type="checkbox" name="checkbox" value="<%= activitie._id %>" onChange="this.form.submit()">
+        <p><%= activitie.name %></p>
+      </div>
+      <input type="hidden" name="listName" value="<%= theDay %>">
+    </form>
+  <% }); %>
+
+  <form class="item" action="/" method="post">
+    <input type="text" name="myActivity" placeholder="Masukkan aktifitas.." autocomplete="off" required>
+    <button type="submit" name="list" value=<%= theDay %>>+</button>
+  </form>
+</div>
+<%- include("footer.ejs") %>
